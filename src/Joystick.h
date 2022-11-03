@@ -21,7 +21,11 @@
 #ifndef JOYSTICK_h
 #define JOYSTICK_h
 
+#ifdef USE_TINYUSB
+#include <Adafruit_TinyUSB.h>
+#else
 #include "DynamicHID/DynamicHID.h"
+#endif
 
 #if ARDUINO < 10606
 #error The Joystick library requires Arduino IDE 1.6.6 or greater. Please update your IDE.
@@ -106,6 +110,9 @@ private:
 
     uint8_t   _hidReportId;
     uint8_t   _hidReportSize; 
+#ifdef USE_TINYUSB
+ 	Adafruit_USBD_HID				 _usb_hid;
+#endif
 
 protected:
     int buildAndSet16BitValue(bool includeValue, int32_t value, int32_t valueMinimum, int32_t valueMaximum, int32_t actualMinimum, int32_t actualMaximum, uint8_t dataLocation[]);
