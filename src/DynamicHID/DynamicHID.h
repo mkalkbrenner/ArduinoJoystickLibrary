@@ -25,7 +25,7 @@
 #include <stdint.h>
 #include <Arduino.h>
 
-#if defined(_VARIANT_ARDUINO_DUE_X_) || defined(ARDUINO_ARCH_SAMD)
+#if defined(_VARIANT_ARDUINO_DUE_X_) || defined(ARDUINO_ARCH_SAMD) || defined(_VARIANT_MACCHINA_M2_)
   // The following values are the same as AVR's USBAPI.h
   // Reproduced here because SAM doesn't have these in
   // its own USBAPI.H
@@ -119,7 +119,7 @@ protected:
   uint8_t getShortName(char* name);
 
 private:
-  #if defined(_VARIANT_ARDUINO_DUE_X_) || defined(ARDUINO_ARCH_SAMD)
+  #if defined(_VARIANT_ARDUINO_DUE_X_) || defined(ARDUINO_ARCH_SAMD) || defined(_VARIANT_MACCHINA_M2_)
   uint32_t epType[1];
   #else
   uint8_t epType[1];
